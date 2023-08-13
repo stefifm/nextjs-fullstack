@@ -1,5 +1,7 @@
+import Image from 'next/image'
+
 function OrdersPage() {
-  return <div>OrdersPage</div>
+  return <h1>Orders Page</h1>
 }
 
 export default OrdersPage
