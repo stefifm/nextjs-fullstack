@@ -1,8 +1,20 @@
-import { featuredProducts } from '@/data'
 import Image from 'next/image'
 import React from 'react'
 
-function Featured() {
+const getFeatured = async () => {
+  const res = await fetch('http://localhost:3000/api/products', {
+    cache: 'no-store'
+  })
+
+  if (!res.ok) {
+    throw new Error(res.statusText)
+  }
+
+  return await res.json()
+}
+
+async function Featured() {
+  const featuredProducts = await getFeatured()
   return (
     <div className='w-screen overflow-x-scroll text-red-500'>
       {/* WRAPPER */}
