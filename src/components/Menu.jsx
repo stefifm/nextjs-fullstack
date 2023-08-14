@@ -21,8 +21,9 @@ function Menu() {
         <Image
           src='/open.png'
           alt='menu open icon'
-          width='20'
-          height='20'
+          width={0}
+          height={0}
+          style={{ width: '100%', height: 'auto' }}
           onClick={() => setOpen(!open)}
         />
       ) : (

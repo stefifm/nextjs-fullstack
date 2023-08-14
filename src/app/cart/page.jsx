@@ -10,8 +10,10 @@ function CartPage() {
           <Image
             src='/temporary/p1.png'
             alt='a product order'
-            width={100}
-            height={100}
+            width={0}
+            height={0}
+            sizes='100vw'
+            className='w-[100px] h-[100px]'
           />
           <div className=''>
             <h1 className='uppercase text-xl font-bold'>sicilian</h1>
@@ -24,8 +26,10 @@ function CartPage() {
           <Image
             src='/temporary/p1.png'
             alt='a product order'
-            width={100}
-            height={100}
+            width={0}
+            height={0}
+            sizes='100vw'
+            className='w-[100px] h-[100px]'
           />
           <div className=''>
             <h1 className='uppercase text-xl font-bold'>sicilian</h1>
@@ -38,8 +42,10 @@ function CartPage() {
           <Image
             src='/temporary/p1.png'
             alt='a product order'
-            width={100}
-            height={100}
+            width={0}
+            height={0}
+            sizes='100vw'
+            className='w-[100px] h-[100px]'
           />
           <div className=''>
             <h1 className='uppercase text-xl font-bold'>sicilian</h1>
