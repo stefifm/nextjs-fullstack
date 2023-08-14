@@ -19,6 +19,7 @@ function Featured() {
                 alt={item.title}
                 fill
                 className='object-contain'
+                sizes='100%'
               />
             </div>
             {/* TEXT CONTAINER */}
