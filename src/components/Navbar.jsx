@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Menu from './Menu'
 import CartIcon from './CartIcon'
 import Image from 'next/image'
+import UserLinks from './UserLinks'
 
 function Navbar() {
   const user = false
@@ -32,7 +33,7 @@ function Navbar() {
           />
           <span>123 456 78</span>
         </div>
-        {!user ? <Link href='/login'>Login</Link> : <Link href='/orders'>Orders</Link>}
+        <UserLinks />
         <CartIcon />
       </div>
     </div>
