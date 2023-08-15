@@ -1,11 +1,23 @@
-import { pizzas } from '@/data'
 import Image from 'next/image'
 import Link from 'next/link'
 
-function CategoryPage() {
+const getProductsByCategory = async (category) => {
+  const res = await fetch(`http://localhost:3000/api/products?cat=${category}`, {
+    cache: 'no-store'
+  })
+
+  if (!res.ok) {
+    throw new Error(res.statusText)
+  }
+
+  return await res.json()
+}
+
+async function CategoryPage({ params }) {
+  const products = await getProductsByCategory(params.category)
   return (
     <div className='flex flex-wrap text-red-500'>
-      {pizzas.map((item) => (
+      {products.map((item) => (
         <Link
           key={item.id}
           href={`/product/${item.id}`}
