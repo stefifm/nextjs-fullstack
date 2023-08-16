@@ -1,11 +1,12 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useQuery } from 'react-query'
 
 function OrdersPage() {
-  const { status } = useSession()
+  const { data: session, status } = useSession()
 
   const router = useRouter()
 
@@ -44,7 +45,27 @@ function OrdersPage() {
               <td className='py-6 px-1'>{item.createdAt.toString().slice(0, 10)}</td>
               <td className='py-6 px-1'>{item.price}</td>
               <td className='hidden md:block py-6 px-1'>{item.products[0].title} </td>
-              <td className='py-6 px-1'>{item.status}</td>
+
+              {session.user.isAdmin ? (
+                <td>
+                  <form action=''>
+                    <input
+                      placeholder={item.status}
+                      className='p-2 ring-1 ring-red-100 rounded-md'
+                    />
+                    <button>
+                      <Image
+                        src='/edit.png'
+                        alt='edit button'
+                        width={20}
+                        height={20}
+                      />
+                    </button>
+                  </form>
+                </td>
+              ) : (
+                <td className='py-6 px-1'>{item.status}</td>
+              )}
             </tr>
           ))}
         </tbody>
