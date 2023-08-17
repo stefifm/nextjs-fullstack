@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import CartIcon from './CartIcon'
+import { useSession } from 'next-auth/react'
 
 const links = [
   { id: 1, title: 'HomePage', url: '/' },
@@ -14,7 +15,7 @@ const links = [
 function Menu() {
   const [open, setOpen] = useState(false)
   // Temporary User
-  const user = false
+  const { status } = useSession()
   return (
     <div>
       {!open ? (
@@ -45,7 +46,7 @@ function Menu() {
               {link.title}
             </Link>
           ))}
-          {!user ? (
+          {status === 'unauthenticated' ? (
             <Link
               href='/login'
               onClick={() => setOpen(!open)}>
