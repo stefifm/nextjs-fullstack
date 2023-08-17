@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 function LoginPage() {
-  const { data, status } = useSession()
+  const { status } = useSession()
   const router = useRouter()
 
   if (status === 'loading') {
