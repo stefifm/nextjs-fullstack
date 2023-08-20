@@ -1,3 +1,4 @@
+import DeleteButton from '@/components/DeleteButton'
 import Price from '@/components/Price'
 import Image from 'next/image'
 
@@ -10,7 +11,7 @@ const getSingleProduct = async (id) => {
     throw new Error(res.statusText)
   }
 
-  return await res.json()
+  return res.json()
 }
 
 async function SingleProductPage({ params }) {
@@ -18,7 +19,7 @@ async function SingleProductPage({ params }) {
   const singleProduct = await getSingleProduct(id)
 
   return (
-    <div className='p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-red-500 md:flex-row md:gap-8 md:items-center'>
+    <div className='p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-red-500 md:flex-row md:gap-8 md:items-center relative'>
       {/* IMAGE CONTAINER */}
 
       <div className='relative w-full h-1/2 md:h-[70%]'>
@@ -36,6 +37,7 @@ async function SingleProductPage({ params }) {
         <p>{singleProduct.desc}</p>
         <Price product={singleProduct} />
       </div>
+      <DeleteButton id={singleProduct.id} />
     </div>
   )
 }
