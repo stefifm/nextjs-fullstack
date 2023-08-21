@@ -61,17 +61,17 @@ function AddPage() {
   }
 
   return (
-    <div>
+    <div className='p-4 my-9 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex items-center justify-center text-red-500'>
       <form
         className='shadow-lg flex flex-wrap gap-4 p-8'
         onSubmit={handleSubmit}>
-        <h1>Add New Product</h1>
+        <h1 className='text-4xl mb-2 text-gray-300 font-bold'>Add New Product</h1>
         <div className='w-full flex flex-col gap-2'>
           <label>Title</label>
           <input
             type='text'
             name='title'
-            className='ring-1 ring-red-200 rounded-sm'
+            className='ring-1 ring-red-200 rounded-sm p-2'
             onChange={handleChange}
           />
         </div>
@@ -80,7 +80,7 @@ function AddPage() {
           <input
             type='text'
             name='img'
-            className='ring-1 ring-red-200 rounded-sm'
+            className='ring-1 ring-red-200 rounded-sm p-2'
             onChange={handleChange}
           />
         </div>
@@ -96,7 +96,7 @@ function AddPage() {
           <input
             type='number'
             name='price'
-            className='ring-1 ring-red-200 rounded-sm'
+            className='ring-1 ring-red-200 rounded-sm p-2'
             onChange={handleChange}
           />
         </div>
@@ -105,33 +105,34 @@ function AddPage() {
           <input
             type='text'
             name='catSlug'
-            className='ring-1 ring-red-200 rounded-sm'
+            className='ring-1 ring-red-200 rounded-sm p-2'
             onChange={handleChange}
           />
         </div>
         <div className='w-full flex flex-col gap-2'>
           <label>Options</label>
-          <div>
+          <div className='flex gap-3'>
             <input
               type='text'
               placeholder='Title'
               name='title'
-              className='ring-1 ring-red-200 rounded-sm'
+              className='ring-1 ring-red-200 rounded-sm p-2'
               onChange={changeOption}
             />
             <input
               type='number'
               placeholder='Additional Price'
               name='additionalPrice'
-              className='ring-1 ring-red-200 rounded-sm'
+              className='ring-1 ring-red-200 rounded-sm p-2'
               onChange={changeOption}
             />
           </div>
-          <div
-            className='w-52 bg-red-500 text-white p-2'
-            onClick={() => setOptions((prev) => [...prev, option])}>
-            Add Option
-          </div>
+          <input
+            className='w-52 bg-red-500 text-white p-2 cursor-pointer'
+            type='button'
+            value='Add Option'
+            onClick={() => setOptions((prev) => [...prev, option])}
+          />
         </div>
 
         <div>
