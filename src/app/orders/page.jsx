@@ -71,7 +71,13 @@ function OrdersPage() {
               <td className='hidden md:block py-6 px-1'>{item.id}</td>
               <td className='py-6 px-1'>{item.createdAt.toString().slice(0, 10)}</td>
               <td className='py-6 px-1'>{item.price}</td>
-              <td className='hidden md:block py-6 px-1'>{item.products[0].title} </td>
+              {item.products.map((product, index) => (
+                <td
+                  className='hidden md:flex py-3  px-1'
+                  key={index}>
+                  {product.title}
+                </td>
+              ))}
 
               {session.user.isAdmin ? (
                 <td>
