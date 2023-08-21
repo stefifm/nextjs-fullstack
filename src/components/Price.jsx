@@ -55,7 +55,7 @@ function Price({ product }) {
       {/* QUANTITY AND ADD BUTTON CONTAINER */}
       <div className='flex justify-between items-center'>
         {/* QUANTITY */}
-        <div className='flex justify-between w-full p-3 ring-1 ring-red-500'>
+        <div className='flex justify-between w-full p-3 ring-1 ring-red-500 xl:gap-4'>
           <span>Quantity</span>
           <div className='flex gap-4 items-center'>
             <button onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}>-</button>
