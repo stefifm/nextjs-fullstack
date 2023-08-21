@@ -28,7 +28,7 @@ function Price({ product }) {
   }, [])
 
   useEffect(() => {
-    if (product.options.length) {
+    if (product.options?.length) {
       setTotal(quantity * product.price + product.options[selected].additionalPrice)
     }
   }, [quantity, selected, product])
