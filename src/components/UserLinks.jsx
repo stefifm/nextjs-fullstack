@@ -9,7 +9,12 @@ function UserLinks() {
     <div>
       {status === 'authenticated' ? (
         <>
-          <Link href='/orders'>Orders</Link>
+          <Link href='/add'>Add Product</Link>
+          <Link
+            href='/orders'
+            className='ml-2'>
+            Orders
+          </Link>
           <span
             className='ml-4 cursor-pointer'
             onClick={() => signOut()}>

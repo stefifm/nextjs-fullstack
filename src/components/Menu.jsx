@@ -53,11 +53,18 @@ function Menu() {
               Login
             </Link>
           ) : (
-            <Link
-              href='/orders'
-              onClick={() => setOpen(!open)}>
-              Orders
-            </Link>
+            <>
+              <Link
+                href='/add'
+                onClick={() => setOpen(!open)}>
+                Add Product
+              </Link>
+              <Link
+                href='/orders'
+                onClick={() => setOpen(!open)}>
+                Orders
+              </Link>
+            </>
           )}
           <Link
             href='/cart'
