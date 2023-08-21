@@ -18,6 +18,14 @@ export const GET = async (req) => {
     return new NextResponse(JSON.stringify({ message: error.message }), { status: 500 })
   }
 }
-export const POST = () => {
-  return new NextResponse('Hello', { status: 200 })
+export const POST = async (req) => {
+  try {
+    const body = await req.json()
+    const product = await prisma.product.create({
+      data: body
+    })
+    return new NextResponse(JSON.stringify(product), { status: 201 })
+  } catch (error) {
+    return new NextResponse(JSON.stringify({ message: error.message }), { status: 500 })
+  }
 }
