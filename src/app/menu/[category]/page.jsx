@@ -12,6 +12,7 @@ const getProductsByCategory = async (category) => {
 
   return await res.json()
 }
+export const revalidate = 0
 
 async function CategoryPage({ params }) {
   const products = await getProductsByCategory(params.category)
@@ -29,6 +30,7 @@ async function CategoryPage({ params }) {
               alt={item.title}
               fill
               className='object-contain'
+              sizes='(min-width: 768px) 50vw, 100vw'
             />
           </div>
           {/* TEXT CONTAINER */}

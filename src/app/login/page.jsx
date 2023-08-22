@@ -24,9 +24,11 @@ function LoginPage() {
         <div className='relative h-1/3 w-full md:h-full md:w-1/2'>
           <Image
             src='/loginBg.png'
-            alt=''
+            alt='login image'
             fill
             className='object-cover'
+            sizes='(min-width: 768px) 50vw, 100vw'
+            priority={true}
           />
         </div>
         {/* FORM CONTAINER */}

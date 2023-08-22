@@ -12,6 +12,8 @@ const getCategories = async () => {
   return await res.json()
 }
 
+export const revalidate = 0
+
 async function MenuPage() {
   const menu = await getCategories()
   return (
