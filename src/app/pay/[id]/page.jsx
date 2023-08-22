@@ -40,7 +40,7 @@ function PayPage({ params }) {
   }
 
   return (
-    <div>
+    <>
       {clientSecret && (
         <Elements
           options={options}
@@ -48,7 +48,7 @@ function PayPage({ params }) {
           <CheckoutForm />
         </Elements>
       )}
-    </div>
+    </>
   )
 }
 

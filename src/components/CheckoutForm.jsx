@@ -87,7 +87,8 @@ function CheckoutForm() {
   return (
     <form
       id='payment-form'
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      className='min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-15rem)] p-4 lg:px-20 xl:px-40 flex flex-col gap-8'>
       <LinkAuthenticationElement id='link-authentication-element' />
       <PaymentElement
         id='payment-element'
@@ -96,7 +97,8 @@ function CheckoutForm() {
       <AddressForm />
       <button
         disabled={isLoading || !stripe || !elements}
-        id='submit'>
+        id='submit'
+        className='bg-red-500 text-white p-4 rounded-md w-28'>
         <span id='button-text'>
           {isLoading ? (
             <div
