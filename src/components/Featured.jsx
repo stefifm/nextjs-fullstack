@@ -6,10 +6,6 @@ const getFeatured = async () => {
     cache: 'no-store'
   })
 
-  if (!res.ok) {
-    throw new Error(res.statusText)
-  }
-
   return await res.json()
 }
 
