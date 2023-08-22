@@ -22,6 +22,7 @@ function Offer() {
           alt='Offer Product'
           fill
           className='object-contain'
+          sizes='(min-width: 768px) 50vw, 100vw'
         />
       </div>
     </div>
