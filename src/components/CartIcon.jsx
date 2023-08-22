@@ -11,8 +11,8 @@ function CartIcon() {
   }, [])
 
   return (
-    <div className='flex items-center gap-4'>
-      <div className='relative w-8 h-8 md:w-5 md:h-5'>
+    <div className='flex items-center gap-1'>
+      <div className='relative w-6 h-6 md:w-4 md:h-4'>
         <Image
           src='/cart.png'
           alt='cart icon'

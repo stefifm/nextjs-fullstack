@@ -5,7 +5,6 @@ import Image from 'next/image'
 import UserLinks from './UserLinks'
 
 function Navbar() {
-  const user = false
   return (
     <div className='h-12 text-red-500 p-4 flex items-center justify-between border-b-2 border-b-red-500 uppercase md:h-24 lg:px-20 xl:px-40'>
       {/* LEFT LINKS */}

@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import CartIcon from './CartIcon'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const links = [
   { id: 1, title: 'HomePage', url: '/' },
@@ -14,8 +15,15 @@ const links = [
 
 function Menu() {
   const [open, setOpen] = useState(false)
-  // Temporary User
-  const { status } = useSession()
+
+  const { data: session, status } = useSession()
+
+  const router = useRouter()
+
+  const handleSignOut = () => {
+    signOut()
+    router.push('/')
+  }
   return (
     <div>
       {!open ? (
@@ -55,22 +63,32 @@ function Menu() {
           ) : (
             <>
               <Link
-                href='/add'
-                onClick={() => setOpen(!open)}>
-                Add Product
-              </Link>
-              <Link
                 href='/orders'
                 onClick={() => setOpen(!open)}>
                 Orders
               </Link>
+
+              {session?.user.isAdmin && (
+                <Link
+                  href='/add'
+                  onClick={() => setOpen(!open)}>
+                  Add Product
+                </Link>
+              )}
+
+              <span
+                className='mx-4 cursor-pointer'
+                onClick={handleSignOut}>
+                Logout
+              </span>
+
+              <Link
+                href='/cart'
+                onClick={() => setOpen(!open)}>
+                <CartIcon />
+              </Link>
             </>
           )}
-          <Link
-            href='/cart'
-            onClick={() => setOpen(!open)}>
-            <CartIcon />
-          </Link>
         </div>
       )}
     </div>
