@@ -9,7 +9,6 @@ function AddPage() {
   const [inputs, setInputs] = useState({
     title: '',
     desc: '',
-    img: '',
     price: 0,
     catSlug: ''
   })
@@ -20,6 +19,7 @@ function AddPage() {
   })
 
   const [options, setOptions] = useState([])
+  const [file, setFile] = useState()
 
   const router = useRouter()
 
@@ -40,9 +40,37 @@ function AddPage() {
     setOption((prev) => ({ ...prev, [name]: newValue }))
   }
 
+  const handleChangeImage = (e) => {
+    const target = e.target
+    const item = target.files[0]
+    setFile(item)
+  }
+
+  const upload = async () => {
+    try {
+      const dataForm = new FormData()
+      dataForm.append('file', file)
+      dataForm.append('upload_preset', 'restaurant')
+
+      const res = await fetch('https://api.cloudinary.com/v1_1/stefigallery/image/upload', {
+        method: 'POST',
+        body: dataForm
+      })
+
+      if (!res.ok) {
+        throw new Error('Upload image failed', await res.text())
+      }
+      const dataImage = await res.json()
+      return dataImage.url
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      const imageUrl = await upload()
       const formattedOptions = options.map((opt) => ({
         ...opt,
         additionalPrice: parseFloat(opt.additionalPrice)
@@ -50,7 +78,7 @@ function AddPage() {
 
       const res = await fetch('http://localhost:3000/api/products', {
         method: 'POST',
-        body: JSON.stringify({ ...inputs, options: formattedOptions })
+        body: JSON.stringify({ img: imageUrl, ...inputs, options: formattedOptions })
       })
 
       const data = await res.json()
@@ -78,10 +106,11 @@ function AddPage() {
         <div className='w-full flex flex-col gap-2'>
           <label>Image</label>
           <input
-            type='text'
-            name='img'
+            type='file'
+            id='file'
+            name='file'
             className='ring-1 ring-red-200 rounded-sm p-2'
-            onChange={handleChange}
+            onChange={handleChangeImage}
           />
         </div>
         <div className='w-full flex flex-col gap-2'>
@@ -96,6 +125,7 @@ function AddPage() {
           <input
             type='number'
             name='price'
+            step='0.01'
             className='ring-1 ring-red-200 rounded-sm p-2'
             onChange={handleChange}
           />
@@ -136,10 +166,10 @@ function AddPage() {
         </div>
 
         <div>
-          {options.map((item) => (
+          {options.map((item, index) => (
             <div
-              className='ring-1 p-2 ring-red-500 rounded-md cursor-pointer'
-              key={item.tile}
+              className='ring-1 p-2 ring-red-500 rounded-md cursor-pointer flex gap-2'
+              key={index}
               onClick={() => setOptions(options.filter((option) => option.title !== item.title))}>
               <span>{item.title}</span>
               <span>${item.additionalPrice}</span>
