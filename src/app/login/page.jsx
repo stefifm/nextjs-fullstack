@@ -47,16 +47,6 @@ function LoginPage() {
             />
             <span>Sign in with Google</span>
           </button>
-          <button className='flex gap-4 p-4 ring-1 ring-blue-100 rounded-md'>
-            <Image
-              src='/facebook.png'
-              alt='facebook logo'
-              width={20}
-              height={20}
-              className='object-contain'
-            />
-            <span>Sign in with Facebook</span>
-          </button>
           <p className='text-sm'>
             Have a problem?{' '}
             <Link
