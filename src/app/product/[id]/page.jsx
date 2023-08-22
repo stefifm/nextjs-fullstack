@@ -14,6 +14,8 @@ const getSingleProduct = async (id) => {
   return res.json()
 }
 
+export const revalidate = 0
+
 async function SingleProductPage({ params }) {
   const { id } = params
   const singleProduct = await getSingleProduct(id)
@@ -25,9 +27,11 @@ async function SingleProductPage({ params }) {
       <div className='relative w-full h-1/2 md:h-[70%]'>
         <Image
           src={singleProduct.img}
-          alt=''
+          alt={singleProduct.title}
           className='object-contain'
           fill
+          sizes='(min-width: 768px) 50vw, 100vw'
+          priority={true}
         />
       </div>
 
