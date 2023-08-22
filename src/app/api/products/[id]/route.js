@@ -27,7 +27,9 @@ export const DELETE = async (req, { params }) => {
         where: { id: id }
       })
 
-      return new NextResponse(JSON.stringify({ message: 'Product has been' }), { status: 200 })
+      return new NextResponse(JSON.stringify({ message: 'Product has been deleted' }), {
+        status: 200
+      })
     } catch (error) {
       return new NextResponse(JSON.stringify({ message: error.message }), { status: 500 })
     }
