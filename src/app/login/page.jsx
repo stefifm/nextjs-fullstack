@@ -3,17 +3,20 @@ import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 function LoginPage() {
-  const { status } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
+
+  useEffect(() => {
+    if (status === 'authenticated' && session) {
+      router.push('/')
+    }
+  }, [status, session, router])
 
   if (status === 'loading') {
     return <p>Loading...</p>
-  }
-
-  if (status === 'authenticated') {
-    router.push('/')
   }
 
   return (

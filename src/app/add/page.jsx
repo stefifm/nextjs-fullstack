@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function AddPage() {
   const { data: session, status } = useSession()
@@ -23,12 +23,14 @@ function AddPage() {
 
   const router = useRouter()
 
+  useEffect(() => {
+    if ((!session && status === 'unauthenticated') || !session?.user.isAdmin) {
+      router.push('/')
+    }
+  }, [status, session, router])
+
   if (status === 'loading') {
     return <p>Loading...</p>
-  }
-
-  if (status === 'unauthenticated' || !session?.user.isAdmin) {
-    router.push('/')
   }
 
   const handleChange = (e) => {
@@ -158,7 +160,7 @@ function AddPage() {
             />
           </div>
           <input
-            className='w-52 bg-red-500 text-white p-2 cursor-pointer'
+            className='w-52 bg-red-500 text-white p-2 cursor-pointer hover:scale-105 transform transition-all duration-500'
             type='button'
             value='Add Option'
             onClick={() => setOptions((prev) => [...prev, option])}
@@ -179,7 +181,7 @@ function AddPage() {
 
         <button
           type='submit'
-          className='w-full bg-red-500 text-white p-2'>
+          className='w-full bg-red-500 text-white p-2 hover:bg-red-200 hover:text-zinc-700 hover:ring-1 hover:ring-red-500 transform transition-all duration-500'>
           Add Product
         </button>
       </form>
